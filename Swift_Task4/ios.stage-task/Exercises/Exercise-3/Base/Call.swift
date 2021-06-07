@@ -2,11 +2,15 @@ import Foundation
 
 typealias CallID = UUID
 
-struct Call {
+struct Call: Hashable {
     let id: CallID
     let incomingUser: User
     let outgoingUser: User
-    let status: CallStatus
+    var status: CallStatus
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }
 
 enum CallEndReason: Equatable {
