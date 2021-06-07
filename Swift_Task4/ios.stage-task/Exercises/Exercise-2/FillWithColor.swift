@@ -2,7 +2,7 @@ import Foundation
 
 final class FillWithColor {
     
-    static var bylo: Int?
+    //static var bylo: Int?
     
     func fillWithColor(_ image: [[Int]], _ row: Int, _ column: Int, _ newColor: Int) -> [[Int]] {
         
@@ -18,33 +18,34 @@ final class FillWithColor {
         
         
         let oldColor = image[row][column]
+        guard oldColor != newColor else { return image }
         var mutableImage = image
         mutableImage[row][column] = newColor
         
         if (image[row].count - 1 > column) {
-            if image[row][column + 1] == oldColor && FillWithColor.bylo != newColor {
-                FillWithColor.bylo = image[row][column]
+            if image[row][column + 1] == oldColor  {
+                //FillWithColor.bylo = image[row][column]
                 mutableImage = fillWithColor(mutableImage, row, column + 1, newColor)
             }
         }
         
         if (0 < column) {
-            if image[row][column - 1] == oldColor && FillWithColor.bylo != newColor {
-                FillWithColor.bylo = image[row][column]
+            if image[row][column - 1] == oldColor  {
+                //FillWithColor.bylo = image[row][column]
                 mutableImage = fillWithColor(mutableImage, row, column - 1, newColor)
             }
         }
         
         if (image.count - 1 > row) {
-            if image[row + 1][column] == oldColor && FillWithColor.bylo != newColor {
-                FillWithColor.bylo = image[row][column]
+            if image[row + 1][column] == oldColor  {
+                //FillWithColor.bylo = image[row][column]
                 mutableImage = fillWithColor(mutableImage, row + 1, column, newColor)
             }
         }
         
         if (0 < row) {
-            if image[row - 1][column] == oldColor && FillWithColor.bylo != newColor {
-                FillWithColor.bylo = image[row][column]
+            if image[row - 1][column] == oldColor  {
+                //FillWithColor.bylo = image[row][column]
                 mutableImage = fillWithColor(mutableImage, row - 1, column, newColor)
             }
         }
